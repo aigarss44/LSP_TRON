@@ -1,0 +1,8 @@
+uzinstalējam freeglut ar komandu:
+sudo apt-get install freeglut3 freeglut3-dev
+
+uzinstalējam papildus softu, kas ļaus pareizi linkot failus:
+sudo apt-get install binutils-gold
+
+kompilējam gavno.c:
+gcc -lGL -lglut gavno.c -o SoftGavno

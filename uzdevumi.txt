@@ -1,0 +1,5 @@
+ar ko vajag tikt skaidrībā tuvākajā laikā:
+
+1) saprast kā programmu palaist uz citiem datoriem viņu nepārkompilējot
+2) saprast kā dabūt konsoli vai debug lauku uz ekrāna
+3) saprast kā var izmantot kaut kādu normālu IDE lai nav jāraksta notepadā
