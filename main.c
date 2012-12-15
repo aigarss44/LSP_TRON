@@ -1,20 +1,42 @@
-#include <GL/glut.h>
+﻿#include "gameLogic.h"
+#include "network.h"
+#include "renderer.h"
+#include "userInput.h"
 
-void draw(void)
-{
-  glClearColor(0,0,1,1);
-  glClear(GL_COLOR_BUFFER_BIT );
-  glFlush();
+#ifndef GLUT_H
+#define GLUT_H
+#include <gl/glut.h>
+#endif // !GLUT_H
+
+#ifndef STDIO_H
+#define STDIO_H
+#include <stdio.h>
+#endif // !STDIO_H
+
+#define WINDOW_WIDTH 800	//loga izmēri
+#define WINDOW_HEIGHT 450
+
+void InitInput() {
+	glutKeyboardFunc (KeyboardKeyPressed);
+	glutMouseFunc (MouseButtonPressed);
+	glutMotionFunc (MouseMotion);
 }
 
-int main(int argc, char **argv)
-{
-  glutInit(&argc, argv);
-  glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB );
-  glutInitWindowPosition(50,25);
-  glutInitWindowSize(500,250);
-  glutCreateWindow("window");
-  glutDisplayFunc(draw);
-  glutMainLoop();
-  return 0;
+void InitGraphics(int argc, char **argv) {
+
+	glutInit(&argc, argv);
+	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB );
+	glutInitWindowPosition(50,50);
+	glutInitWindowSize(WINDOW_WIDTH,WINDOW_HEIGHT);
+	glutCreateWindow("TRON");
+	glutDisplayFunc(Draw);
+}
+
+int main(int argc, char **argv) {
+
+	InitGraphics(argc,argv);
+	InitInput();
+	glutIdleFunc (gameTick);
+	glutMainLoop();
+	return 0;
 }
