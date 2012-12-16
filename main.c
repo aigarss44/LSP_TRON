@@ -26,7 +26,7 @@ void InitGraphics(int argc, char **argv) {
 
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB );
-	glutInitWindowPosition(50,50);
+	glutInitWindowPosition(50,550);
 	glutInitWindowSize(WINDOW_WIDTH,WINDOW_HEIGHT);
 	glutCreateWindow("TRON");
 	glutDisplayFunc(Draw);

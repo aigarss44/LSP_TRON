@@ -11,4 +11,5 @@ void Draw(void) {
 
 void RenderField(Field *field) {
 	//sataisi lai vispar kaut ko zime uz ekrana un njem vera aspect ratio (tam laikam kaut kâdu init funkciju atseviðíi uztaisîsi)
+	printf("X:%.2f Y:%.2f ROT:%.2f \n", field->player->location.x, field->player->location.y, field->player->rotation);
 }
