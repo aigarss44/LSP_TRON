@@ -6,3 +6,9 @@ void Draw(void) {
 	glClear(GL_COLOR_BUFFER_BIT );
 	glFlush();
 }
+
+
+
+void RenderField(Field *field) {
+	//sataisi lai vispar kaut ko zime uz ekrana un njem vera aspect ratio (tam laikam kaut kâdu init funkciju atseviðíi uztaisîsi)
+}

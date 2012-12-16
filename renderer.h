@@ -8,5 +8,8 @@
 #include <stdio.h>
 #endif // !STDIO_H
 
+#include "gameObjects.h"
 
 void Draw(void);
+
+void RenderField(Field *field);

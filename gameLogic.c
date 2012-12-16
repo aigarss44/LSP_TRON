@@ -7,14 +7,15 @@ void AddNewPlayer(float x, float y, float angle, Field *field) {
 	
 	Lightcycle *player = (Lightcycle *) malloc(sizeof(Lightcycle));
 	Lightcycle *p;
+
 	//setojam sâkotnçjâs koordinâtas
 	player->angle = angle;
 	player->x = x;
 	player->y = y;
 	player->next = NULL;
-	player->tailLenght = 0;
+	player->tail->tailLenght = 0;
 	
-	//soft gavno
+	//pievienojam spçlçtâju laukumam
 	p = field->player;
 	while (p != NULL) {
 		p = p->next;
@@ -23,7 +24,7 @@ void AddNewPlayer(float x, float y, float angle, Field *field) {
 	
 }
 
-void StartGame () {
+void InitGame () {
 
 	Lightcycle *me;
 
@@ -34,9 +35,11 @@ void StartGame () {
 	me = (Lightcycle *) malloc(sizeof(Lightcycle));
 	field->player = me;
 
+	gameField = field;
 }
 
 void gameTick() { 
 	//printf("tick");		//pabîdîsim visus motociklus uz jaunajâm pozîcijâm
+	//RenderField(gameField);
 }
 
