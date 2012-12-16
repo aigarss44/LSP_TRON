@@ -28,20 +28,19 @@ float vec2_len(vec2 a) {
 }
 vec2 vec2_norm(vec2 a) {
 	float len = vec2_len(a);
-	vec2 ret = {a.x * 1/len, a.y * 1/len};
-	return ret;
+	return vec2_mul(a, 1/len);
 }
 float vec2_dot(vec2 a, vec2 b) {
 	vec2 an = vec2_norm(a);
 	vec2 bn = vec2_norm(b);
 	return an.x * bn.x + an.y * bn.y;
 }
-vec2 vec2_rot(vec2 a, float angle) {
+vec2 vec2_rot(vec2 a, float deg) {
 
 	vec2 ret;
-	angle = DegToRad(angle);
+	deg = DegToRad(deg);
 
-	ret.x = (float)(cos(angle) * a.x - sin(angle) * a.y);
-	ret.y = (float)(sin(angle) * a.x + cos(angle) * a.y);
+	ret.x = (float)(cos(deg) * a.x - sin(deg) * a.y);
+	ret.y = (float)(sin(deg) * a.x + cos(deg) * a.y);
 	return ret;
 }
