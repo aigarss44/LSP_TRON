@@ -3,15 +3,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void AddNewPlayer(float x, float y, float angle, Field *field) {
+void AddNewPlayer(float x, float y, float rotation, Field *field) {
 	
 	Lightcycle *player = (Lightcycle *) malloc(sizeof(Lightcycle));
 	Lightcycle *p;
 
 	//setojam sâkotnçjâs koordinâtas
-	player->angle = angle;
-	player->x = x;
-	player->y = y;
+	player->rotation = rotation;
+	player->location.x = x;
+	player->location.y = y;
 	player->next = NULL;
 	player->tail->tailLenght = 0;
 	
@@ -40,6 +40,16 @@ void InitGame () {
 
 void gameTick() { 
 	//printf("tick");		//pabîdîsim visus motociklus uz jaunajâm pozîcijâm
-	//RenderField(gameField);
+	RenderField(gameField);
 }
 
+void UpdateLightcyclePosition (Lightcycle *player) {
+	
+	float degreesToTurn = player->targetRotation - player->rotation; // pagaidâm vnk snapo par 90 grâdiem
+
+	player->rotation += degreesToTurn; 
+}
+
+void checkCollision () {
+
+}

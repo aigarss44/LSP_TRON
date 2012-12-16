@@ -4,6 +4,8 @@
 
 #define MAX_TAIL_LENGTH 100
 
+#include "vector.h"
+
 typedef struct Tail Tail;
 struct Tail {
 	int tailLenght;
@@ -12,9 +14,10 @@ struct Tail {
 
 typedef struct Lightcycle Lightcycle;
 struct Lightcycle {
-	float x;
-	float y;
-	float angle;	//leòíis grâdos
+	vec2 location;			//kur viòu renderot uz ekrâna
+	vec2 targetLocation;	//tiek izmantots animâcijai
+	float rotation;			//leòíis grâdos. ðo izmanto pie renderoðanas
+	float targetRotation;	//leòíis, kâdu mçìinam sasniegt. tiek izmantots lai pagriezienos bûtu vis maz kaut kâda animâcija
 	Lightcycle *next;
 	Tail *tail;
 };

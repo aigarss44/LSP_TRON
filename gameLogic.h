@@ -9,6 +9,6 @@
 
 Field *gameField;
 
-void AddNewPlayer(float x, float y, float angle, Field *field);
+void AddNewPlayer(float x, float y, float rotation, Field *field);
 void InitGame ();
 void gameTick();

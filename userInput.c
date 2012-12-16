@@ -14,4 +14,18 @@ void MouseMotion(int x, int y)
 void KeyboardKeyPressed(unsigned char key, int x, int y)
 {
   printf ("KeyboardKeyPressed %c x %i y %i\n", key, x, y);
+
+  switch (key)
+  {
+  case 27:				// escape poga. rubîjam laukâ spçli
+	  exit (0);
+	  break;
+  case 'a':				// grieðam moci pa kreisi
+	  gameField->player->targetRotation -= 90.0f;
+	  break;
+  case 'd':				//grieþam moci pa labi
+	  gameField->player->targetRotation += 90.0f;
+	  break;
+  }
+
 }

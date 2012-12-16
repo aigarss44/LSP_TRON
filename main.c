@@ -34,6 +34,7 @@ void InitGraphics(int argc, char **argv) {
 
 int main(int argc, char **argv) {
 
+	InitGame();
 	InitGraphics(argc,argv);
 	InitInput();
 	glutIdleFunc (gameTick);
