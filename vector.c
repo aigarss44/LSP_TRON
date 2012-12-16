@@ -1,41 +1,47 @@
 #include "vector.h"
 
-//vector gavno
-/*
-struct Vect3d {
+#include <math.h>
 
-  float x, y, z; 
+float DegToRad(float deg) {
+	return deg*((float)PI/180.0f);
+}
+vec2 vec2_neg(vec2 a) {
+	vec2 ret = {-a.x, -a.y};
+	return ret;
+}
+vec2 vec2_add(vec2 a, vec2 b) {
+	vec2 ret = {a.x + b.x, a.y + b.y};
+	return ret;
+}
+vec2 vec2_sub(vec2 a, vec2 b) {
+	return vec2_add(a, vec2_neg(b));
+}
+vec2 vec2_mul(vec2 a, float val) {
+	vec2 ret = {a.x *val, a.y * val};
+	return ret;
+}
+vec2 vec2_div(vec2 a, float val) {
+	return vec2_mul(a, 1/val);
+}
+float vec2_len(vec2 a) {
+	return (float)sqrt(a.x * a.x + a.y * a.y);
+}
+vec2 vec2_norm(vec2 a) {
+	float len = vec2_len(a);
+	vec2 ret = {a.x * 1/len, a.y * 1/len};
+	return ret;
+}
+float vec2_dot(vec2 a, vec2 b) {
+	vec2 an = vec2_norm(a);
+	vec2 bn = vec2_norm(b);
+	return an.x * bn.x + an.y * bn.y;
+}
+vec2 vec2_rot(vec2 a, float angle) {
 
-  Vect3d(float X=0, float Y=0, float Z=0)
-  { x=X; y=Y; z=Z; }
+	vec2 ret;
+	angle = DegToRad(angle);
 
-  Vect3d operator + (const Vect3d &b) const 
-  { return Vect3d(x+b.x,y+b.y,z+b.z); }
-
-  Vect3d operator - (const Vect3d &b) const 
-  { return Vect3d(x-b.x,y-b.y,z-b.z); }
-
-  Vect3d operator * (float b) const 
-  { return Vect3d(x*b,y*b,z*b); }
-
-  Vect3d mult (const Vect3d &b) const 
-  { return Vect3d(x*b.x,y*b.y,z*b.z); }
-
-};
-
-struct Vect2d {
-
-  float x, y; 
-
-  Vect2d (float X=0, float Y=0) { x=X; y=Y; }
-
-  Vect2d operator + (const Vect2d &b) const { return Vect2d(x+b.x,y+b.y); }
-
-  Vect2d operator - (const Vect2d &b) const { return Vect2d(x-b.x,y-b.y); }
-
-  Vect2d operator * (float b) const { return Vect2d(x*b,y*b); }
-
-  Vect2d mult (const Vect2d &b) const { return Vect2d(x*b.x,y*b.y); }
-
-};
-*/
+	ret.x = (float)(cos(angle) * a.x - sin(angle) * a.y);
+	ret.y = (float)(sin(angle) * a.x + cos(angle) * a.y);
+	return ret;
+}
