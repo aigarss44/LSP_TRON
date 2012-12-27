@@ -1,3 +1,4 @@
+#pragma once
 
 #ifndef GAME_OBJECTS
 #define GAME_OBJECTS

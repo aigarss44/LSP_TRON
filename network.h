@@ -1,4 +1,3 @@
-#ifndef STDIO_H
-#define STDIO_H
+#pragma once
+
 #include <stdio.h>
-#endif // !STDIO_H
