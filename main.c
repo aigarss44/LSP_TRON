@@ -3,15 +3,9 @@
 #include "renderer.h"
 #include "userInput.h"
 
-#ifndef GLUT_H
-#define GLUT_H
-#include <gl/glut.h>
-#endif // !GLUT_H
+#include <GL/glut.h>
 
-#ifndef STDIO_H
-#define STDIO_H
 #include <stdio.h>
-#endif // !STDIO_H
 
 #define WINDOW_WIDTH 800	//loga izmēri
 #define WINDOW_HEIGHT 450

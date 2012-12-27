@@ -3,7 +3,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-#include <windows.h>
 
 void AddNewPlayer(float x, float y, float rotation, Field *field) {
 	
@@ -59,7 +58,7 @@ void InitGame () {
 
 void gameTick(void) { 
 	//printf("tick \n");		//pabîdîsim visus motociklus uz jaunajâm pozîcijâm
-	Sleep(1000/FRAMES_PER_SECOND);			//TODO linux analogu. ðobrîd tiek izmantota <windows.h> versija
+	//Sleep(1000/FRAMES_PER_SECOND);			//TODO linux analogu. ðobrîd tiek izmantota <windows.h> versija
 	UpdateLightcyclePosition(gameField->player);
 	checkCollision(gameField->player);
 	RenderField(gameField);

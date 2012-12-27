@@ -1,12 +1,7 @@
-#ifndef GLUT_H
-#define GLUT_H
-#include <gl/glut.h>
-#endif // !GLUT_H
+#pragma once
 
-#ifndef STDIO_H
-#define STDIO_H
+#include <GL/glut.h>
 #include <stdio.h>
-#endif // !STDIO_H
 
 #include "gameObjects.h"
 
