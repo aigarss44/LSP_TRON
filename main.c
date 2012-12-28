@@ -19,7 +19,7 @@ void InitInput() {
 void InitGraphics(int argc, char **argv) {
 
 	glutInit(&argc, argv);
-	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB );
+	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB | GLUT_DEPTH);
 	glutInitWindowPosition(50,550);
 	glutInitWindowSize(WINDOW_WIDTH,WINDOW_HEIGHT);
 	glutCreateWindow("TRON");
@@ -32,6 +32,11 @@ int main(int argc, char **argv) {
 	InitGraphics(argc,argv);
 	InitInput();
 	glutIdleFunc (gameTick);
+
+	const char *ver = glGetString(GL_VERSION);
+	printf("%s\n", ver);
+	init_renderer();
+
 	glutMainLoop();
 	return 0;
 }

@@ -1,15 +1,69 @@
 #include "renderer.h"
+#include "vector.h"
+#include "toolbox.h"
 
 void Draw(void) {
 
-	glClearColor(0,0,1,1);
-	glClear(GL_COLOR_BUFFER_BIT );
+}
+
+void init_renderer() {
+	glEnable(GL_DEPTH_TEST);
+	glClearColor(0.3f, 0.3f, 0.4f, 1.0f);
+}
+
+
+void render_player(Lightcycle *player);
+void render_tail(Tail *tail);
+
+float field_w = 2.0f;
+float field_h = 2.0f;
+
+void RenderField(Field *field) {
+
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	Lightcycle *players = field->player;
+
+	field_w = field->width;
+	field_h = field->height;
+
+	ground_plane(field_w, field_h);
+	render_axes();
+
+	if (players != 0)
+	while (players->next != 0) {
+		render_player(players);
+		players = players->next;
+	}
+
 	glFlush();
 }
 
+void render_player(Lightcycle *player) {
+
+	Tail *tail = player->tail;
 
 
-void RenderField(Field *field) {
-	//sataisi lai vispar kaut ko zime uz ekrana un njem vera aspect ratio (tam laikam kaut kâdu init funkciju atseviðíi uztaisîsi)
-	printf("X:%.2f Y:%.2f ROT:%.2f \n", field->player->location.x, field->player->location.y, field->player->rotation);
+
+
+	if (tail != 0)
+		render_tail(tail);
 }
+void render_tail(Tail *tail) {
+
+	int len = tail->tailLenght;
+	int i;
+	for (i = 0; i < len; i++) {
+
+	}
+}
+
+
+
+
+
+
+
+
+
+

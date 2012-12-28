@@ -9,14 +9,14 @@ void AddNewPlayer(float x, float y, float rotation, Field *field) {
 	Lightcycle *player = (Lightcycle *) malloc(sizeof(Lightcycle));
 	Lightcycle *p;
 
-	//setojam sâkotnçjâs koordinâtas
+	//setojam sï¿½kotnï¿½jï¿½s koordinï¿½tas
 	player->rotation = rotation;
 	player->location.x = x;
 	player->location.y = y;
 	player->next = NULL;
 	player->tail->tailLenght = 0;
 	
-	//pievienojam spçlçtâju laukumam
+	//pievienojam spï¿½lï¿½tï¿½ju laukumam
 	p = field->player;
 	while (p != NULL) {
 		p = p->next;
@@ -57,8 +57,8 @@ void InitGame () {
 }
 
 void gameTick(void) { 
-	//printf("tick \n");		//pabîdîsim visus motociklus uz jaunajâm pozîcijâm
-	//Sleep(1000/FRAMES_PER_SECOND);			//TODO linux analogu. ðobrîd tiek izmantota <windows.h> versija
+	//printf("tick \n");		//pabï¿½dï¿½sim visus motociklus uz jaunajï¿½m pozï¿½cijï¿½m
+	//Sleep(1000/FRAMES_PER_SECOND);			//TODO linux analogu. ï¿½obrï¿½d tiek izmantota <windows.h> versija
 	UpdateLightcyclePosition(gameField->player);
 	checkCollision(gameField->player);
 	RenderField(gameField);
@@ -67,7 +67,7 @@ void gameTick(void) {
 void UpdateLightcyclePosition (Lightcycle *player) {
 	
 	/*
-	pagriezienu animâcijas
+	pagriezienu animï¿½cijas
 
 	float degreesToTarget;
 	float degreesToTurn = (player->targetRotation - player->previousSolidRotation) / ROTATION_FRAME_COUNT;
@@ -127,11 +127,11 @@ void checkCollision (Lightcycle *player) {
 
 void checkFieldCollision (Lightcycle *player) {
 
-	printf("targetX: %.2f targetY: %.2f \n", player->targetLocation.x, player->targetLocation.y);
+	//printf("targetX: %.2f targetY: %.2f \n", player->targetLocation.x, player->targetLocation.y);
 
 	if ((player->targetLocation.x > FIELD_WIDTH) || (player->targetLocation.y > FIELD_HEIGHT) || (player->targetLocation.x < 0) || (player->targetLocation.y < 0))
 	{
-		printf("player colision with level bounds");
+		//printf("player colision with level bounds");
 	}
 }
 
