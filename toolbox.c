@@ -54,3 +54,25 @@ void render_axes() {
 
 	glEnd();
 }
+void render_quad(float x, float y) {
+
+	float z = y;
+	float k = 0.5f;
+
+	glColor3f(0, 1, 0);
+	glBegin(GL_QUADS);
+		glVertex3f(x-k, 0, z-k);
+		glVertex3f(x+k, 0, z-k);
+		glVertex3f(x+k, 0, z+k);
+		glVertex3f(x-k, 0, z+k);
+	glEnd();
+}
+
+
+
+
+
+
+
+
+

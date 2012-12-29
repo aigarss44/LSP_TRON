@@ -56,7 +56,7 @@ void render_player(Lightcycle *player) {
 
 	Tail *tail = player->tail;
 
-
+	render_quad(player->location.x, player->location.y);
 
 
 	if (tail != 0)
