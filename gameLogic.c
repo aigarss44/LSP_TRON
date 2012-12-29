@@ -4,6 +4,11 @@
 #include <stdlib.h>
 #include <math.h>
 
+
+
+
+
+
 void AddNewPlayer(float x, float y, float rotation, Field *field) {
 	
 	Lightcycle *player = (Lightcycle *) malloc(sizeof(Lightcycle));
@@ -59,6 +64,7 @@ void InitGame () {
 void gameTick(void) { 
 	//printf("tick \n");		//pab�d�sim visus motociklus uz jaunaj�m poz�cij�m
 	//Sleep(1000/FRAMES_PER_SECOND);			//TODO linux analogu. �obr�d tiek izmantota <windows.h> versija
+	WAIT_FOR_NEXT_FRAME
 	UpdateLightcyclePosition(gameField->player);
 	checkCollision(gameField->player);
 	RenderField(gameField);

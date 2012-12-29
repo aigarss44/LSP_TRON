@@ -8,7 +8,16 @@
 
 #define FIELD_WIDTH 160		//lauka pa kuru brauc motocikli izmçri
 #define FIELD_HEIGHT 90
-#define FRAMES_PER_SECOND 2
+#define FRAMES_PER_SECOND 5
+
+//cross platform, bitch
+#ifdef __unix__ 
+# include <unistd.h>
+#define WAIT_FOR_NEXT_FRAME usleep(1000000/FRAMES_PER_SECOND);
+#elif defined _WIN32 
+# include <windows.h>
+#define WAIT_FOR_NEXT_FRAME Sleep(1000/FRAMES_PER_SECOND);
+#endif
 
 Field *gameField;
 
