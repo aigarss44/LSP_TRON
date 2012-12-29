@@ -20,12 +20,18 @@ void init_renderer() {
 
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
-	gluLookAt(	0, 90, 0,
+	gluLookAt(	0, -90, 0,
 				0, 0, 0,
 				0, 0, 1);
 
 }
+void place_camera(Field *field) {
 
+	Lightcycle *me = field->player;
+
+
+
+}
 
 void render_player(Lightcycle *player);
 void render_tail(Tail *tail);
@@ -42,6 +48,8 @@ void RenderField(Field *field) {
 	field_w = field->width;
 	field_h = field->height;
 
+	place_camera(field);
+
 	ground_plane(field_w, field_h);
 	render_axes();
 
@@ -57,10 +65,10 @@ void render_player(Lightcycle *player) {
 
 	Tail *tail = player->tail;
 
-	float x = player->location.x;
-	float y = player->location.y;
+	float x = player->location.x - (field_w/2.0f);
+	float y = player->location.y - (field_h/2.0f);
+
 	render_quad(x, y);
-	printf("%f %f\n", x, y);
 
 	if (tail != 0)
 		render_tail(tail);

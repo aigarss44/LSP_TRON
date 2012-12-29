@@ -44,3 +44,4 @@ vec2 vec2_rot(vec2 a, float deg) {
 	ret.y = (float)(sin(deg) * a.x + cos(deg) * a.y);
 	return ret;
 }
+
