@@ -133,11 +133,11 @@ void checkCollision (Lightcycle *player) {
 
 void checkFieldCollision (Lightcycle *player) {
 
-	//printf("targetX: %.2f targetY: %.2f \n", player->targetLocation.x, player->targetLocation.y);
+	//printf("X: %.2f Y: %.2f rot: %.2f\n", player->location.x, player->location.y, player->rotation);
 
 	if ((player->targetLocation.x > FIELD_WIDTH) || (player->targetLocation.y > FIELD_HEIGHT) || (player->targetLocation.x < 0) || (player->targetLocation.y < 0))
 	{
-		//printf("player colision with level bounds");
+		printf("player colision with level bounds");
 	}
 }
 
