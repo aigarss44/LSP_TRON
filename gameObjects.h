@@ -1,8 +1,5 @@
 #pragma once
 
-#ifndef GAME_OBJECTS
-#define GAME_OBJECTS
-
 #define MAX_TAIL_LENGTH 100
 #define ROTATION_FRAME_COUNT 10
 #define TRANSLATION_FRAME_COUNT 5
@@ -12,20 +9,20 @@
 typedef struct Tail Tail;
 struct Tail {
 	int tailLenght;
-	float tail[MAX_TAIL_LENGTH]; //bûs 2d vektori nevis floati
+	float tail[MAX_TAIL_LENGTH]; //bï¿½s 2d vektori nevis floati
 };
 
 typedef struct Lightcycle Lightcycle;
 struct Lightcycle {
 	
-	//pieòemam ka +x ir pa labi un +y ir uz augðu
-	vec2 location;			//kur viòu renderot uz ekrâna
-	vec2 targetLocation;	//tiek izmantots animâcijai
+	//pieï¿½emam ka +x ir pa labi un +y ir uz augï¿½u
+	vec2 location;			//kur viï¿½u renderot uz ekrï¿½na
+	vec2 targetLocation;	//tiek izmantots animï¿½cijai
 	vec2 previousSolidLocation;
 
-	//pieòemam ka 0 grâdi ir ekrânam pa labi un 90 ir uz augðu
-	float rotation;			//leòíis grâdos. ðo izmanto pie renderoðanas. 
-	float targetRotation;	//leòíis, kâdu mçìinam sasniegt. tiek izmantots lai pagriezienos bûtu vis maz kaut kâda animâcija
+	//pieï¿½emam ka 0 grï¿½di ir ekrï¿½nam pa labi un 90 ir uz augï¿½u
+	float rotation;			//leï¿½ï¿½is grï¿½dos. ï¿½o izmanto pie renderoï¿½anas. 
+	float targetRotation;	//leï¿½ï¿½is, kï¿½du mï¿½ï¿½inam sasniegt. tiek izmantots lai pagriezienos bï¿½tu vis maz kaut kï¿½da animï¿½cija
 	float previousSolidRotation;
 	Lightcycle *next;
 	Tail *tail;
@@ -39,4 +36,3 @@ struct Field {
 	Lightcycle *player;
 };
 
-#endif // !GAME_OBJECTS
