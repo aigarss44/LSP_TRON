@@ -2,17 +2,36 @@
 
 void ground_plane(float w, float h) {
 
-	float x = x;
+	float x = w;
 	float z = h;
 	float y = 0;
 
+	float hx = x/2.0f;
+	float hz = z/2.0f;
+
 	glColor3f(0.8f, 0.1f, 0.0f);
 	glBegin(GL_LINES);
+	int i;
+	for (i = 0; i <= h; i++) {
+		glVertex3f(-hx, y, -hz + i);
+		glVertex3f(hx, y, -hz + i);
+	}
+	for (i = 0; i <= w; i++) {
+		glVertex3f(-hx + i, y, -hz);
+		glVertex3f(-hx + i, y, hz);
+	}
+	glEnd();
+
+	/*
+	glColor3f(0.8f, 0.1f, 0.0f);
+	glBegin(GL_LINE_LOOP);
 		glVertex3f(-x, y, -z);
 		glVertex3f(x, y, -z);
 		glVertex3f(x, y, z);
 		glVertex3f(-x, y, z);
 	glEnd();
+	*/
+
 
 }
 void render_axes() {

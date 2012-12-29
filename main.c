@@ -7,9 +7,6 @@
 
 #include <stdio.h>
 
-#define WINDOW_WIDTH 800	//loga izmēri
-#define WINDOW_HEIGHT 450
-
 void InitInput() {
 	glutKeyboardFunc (KeyboardKeyPressed);
 	glutMouseFunc (MouseButtonPressed);
@@ -20,7 +17,7 @@ void InitGraphics(int argc, char **argv) {
 
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB | GLUT_DEPTH);
-	glutInitWindowPosition(50,550);
+	glutInitWindowPosition(400,200);
 	glutInitWindowSize(WINDOW_WIDTH,WINDOW_HEIGHT);
 	glutCreateWindow("TRON");
 	glutDisplayFunc(Draw);

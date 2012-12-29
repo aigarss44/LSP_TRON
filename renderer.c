@@ -9,6 +9,19 @@ void Draw(void) {
 void init_renderer() {
 	glEnable(GL_DEPTH_TEST);
 	glClearColor(0.3f, 0.3f, 0.4f, 1.0f);
+
+
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	float aspect = WINDOW_WIDTH/(float)WINDOW_HEIGHT;
+	gluPerspective(60, aspect, 0.01f, 1000.0f);
+
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+	gluLookAt(	0, 90, 0,
+				0, 0, 0,
+				0, 0, 1);
+
 }
 
 
