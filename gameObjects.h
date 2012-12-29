@@ -33,6 +33,7 @@ struct Lightcycle {
 
 typedef struct Field Field;
 struct Field {
+	int playerCount;
 	float width;
 	float height;
 	Lightcycle *player;
