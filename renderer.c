@@ -43,8 +43,7 @@ void RenderField(Field *field) {
 	ground_plane(field_w, field_h);
 	render_axes();
 
-	if (players != 0)
-	while (players->next != 0) {
+	while (players != 0) {
 		render_player(players);
 		players = players->next;
 	}
@@ -56,8 +55,10 @@ void render_player(Lightcycle *player) {
 
 	Tail *tail = player->tail;
 
-	render_quad(player->location.x, player->location.y);
-
+	float x = player->location.x;
+	float y = player->location.y;
+	render_quad(x, y);
+	printf("%f %f\n", x, y);
 
 	if (tail != 0)
 		render_tail(tail);
