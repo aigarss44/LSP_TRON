@@ -24,13 +24,13 @@ void InitGraphics(int argc, char **argv) {
 }
 
 int main(int argc, char **argv) {
+	const char *ver = glGetString(GL_VERSION);
 
 	InitGame();
 	InitGraphics(argc,argv);
 	InitInput();
 	glutIdleFunc (gameTick);
 
-	const char *ver = glGetString(GL_VERSION);
 	printf("%s\n", ver);
 	init_renderer();
 

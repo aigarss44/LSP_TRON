@@ -9,9 +9,10 @@ void ground_plane(float w, float h) {
 	float hx = x/2.0f;
 	float hz = z/2.0f;
 
+	int i;
 	glColor3f(0.8f, 0.1f, 0.0f);
 	glBegin(GL_LINES);
-	int i;
+	
 	for (i = 0; i <= h; i++) {
 		glVertex3f(-hx, y, -hz + i);
 		glVertex3f(hx, y, -hz + i);

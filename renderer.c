@@ -7,13 +7,14 @@ void Draw(void) {
 }
 
 void init_renderer() {
+	float aspect;
 	glEnable(GL_DEPTH_TEST);
 	glClearColor(0.3f, 0.3f, 0.4f, 1.0f);
 
 
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	float aspect = WINDOW_WIDTH/(float)WINDOW_HEIGHT;
+	aspect = WINDOW_WIDTH/(float)WINDOW_HEIGHT;
 	gluPerspective(60, aspect, 0.01f, 1000.0f);
 
 	glMatrixMode(GL_MODELVIEW);
@@ -32,10 +33,9 @@ float field_w = 2.0f;
 float field_h = 2.0f;
 
 void RenderField(Field *field) {
+	Lightcycle *players = field->player;
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-	Lightcycle *players = field->player;
 
 	field_w = field->width;
 	field_h = field->height;
