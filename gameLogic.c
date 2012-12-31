@@ -72,22 +72,6 @@ void gameTick(void) {
 
 void UpdateLightcyclePosition (Lightcycle *player) {
 	
-	/*
-	pagriezienu anim�cijas
-
-	float degreesToTarget;
-	float degreesToTurn = (player->targetRotation - player->previousSolidRotation) / ROTATION_FRAME_COUNT;
-
-	player->rotation += degreesToTurn; 
-
-	degreesToTarget = player->targetRotation - player->rotation;
-	printf("degreesToTarget = %.3f",degreesToTarget);
-	if (fabs(degreesToTarget) < 0.01f)
-	{
-		player->rotation = player->targetRotation;
-		player->previousSolidRotation = player->targetRotation;
-	}
-	*/
 	player->rotation = player->targetRotation;
 
 	if (player->rotation < 0)
@@ -122,6 +106,10 @@ void UpdateLightcyclePosition (Lightcycle *player) {
 
 	player->location.x = player->targetLocation.x;
 	player->location.y = player->targetLocation.y;
+
+}
+
+void UpdateTail(Lightcycle *player) {
 
 }
 

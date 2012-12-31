@@ -9,7 +9,7 @@
 typedef struct Tail Tail;
 struct Tail {
 	int tailLenght;
-	float tail[MAX_TAIL_LENGTH]; //b�s 2d vektori nevis floati
+	vec2 tail[MAX_TAIL_LENGTH]; //b�s 2d vektori nevis floati
 };
 
 typedef struct Lightcycle Lightcycle;

@@ -26,6 +26,7 @@ void InitGame ();
 void gameTick();
 
 void UpdateLightcyclePosition (Lightcycle *player);
+void UpdateTail(Lightcycle *player);
 
 void checkCollision (Lightcycle *player);
 void checkFieldCollision (Lightcycle *player);
