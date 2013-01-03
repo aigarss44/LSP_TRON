@@ -61,6 +61,10 @@ void InitGame () {
 	gameField = field;
 }
 
+void updateGameFromServer(int testVar) {
+	printf("updateGameFromServer: %i", testVar);
+}
+
 void gameTick(void) { 
 	//printf("tick \n");		//pab�d�sim visus motociklus uz jaunaj�m poz�cij�m
 	//Sleep(1000/FRAMES_PER_SECOND);			//TODO linux analogu. �obr�d tiek izmantota <windows.h> versija

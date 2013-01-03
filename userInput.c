@@ -22,9 +22,25 @@ void KeyboardKeyPressed(unsigned char key, int x, int y)
 	  break;
   case 'a':				// grieðam moci pa kreisi
 	  gameField->player->targetRotation += 90.0f;
+	  sendData(2);
 	  break;
   case 'd':				//grieþam moci pa labi
 	  gameField->player->targetRotation -= 90.0f;
+	  sendData(1);
+	  break;
+  case ' ':				// izshaujam lodi
+	  //TODO
+	  break;
+
+
+  case 'j':				//joinojamies spelei
+	  joinGame();
+	  break;
+  case 'h':				//hostojam speli
+	  hostGame();
+	  break;
+  case 'l':				//leavojam speli
+	  leaveGame();
 	  break;
   }
 

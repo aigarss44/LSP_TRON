@@ -4,6 +4,7 @@
 #include <stdlib.h>
 //#include "vector.h"
 #include "renderer.h"
+#include "network.h"
 #include "gameObjects.h"
 
 #define FIELD_WIDTH 160		//lauka pa kuru brauc motocikli izmçri
@@ -31,3 +32,5 @@ void UpdateTail(Lightcycle *player);
 void checkCollision (Lightcycle *player);
 void checkFieldCollision (Lightcycle *player);
 void checkTailCollision (Lightcycle *player);
+
+void updateGameFromServer(int testVar);
