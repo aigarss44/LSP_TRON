@@ -4,20 +4,8 @@
  *
  * Created on January 5, 2013, 1:18 PM
  */
+//the thread function
+#pragma once
 
-#ifndef WORKER_H
-#define	WORKER_H
-
-#ifdef	__cplusplus
-extern "C" {
-#endif
-
-
-
-
-#ifdef	__cplusplus
-}
-#endif
-
-#endif	/* WORKER_H */
+void *connection_handler(void *);
 
