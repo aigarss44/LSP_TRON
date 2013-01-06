@@ -6,6 +6,14 @@
 ##
 ## This file is generated automatically.
 ##
+LIBS = -lpthread
 
-all:
-	gcc server.c -o serv_test.myprog
+SRC=$(wildcard *.c)
+
+	
+all: $(SRC)
+	gcc $^ $(LIBS) -o serv_test.myprog
+
+
+run: all
+	./serv_test.myprog
