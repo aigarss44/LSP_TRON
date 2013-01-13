@@ -7,7 +7,7 @@
 #include "network.h"
 #include "gameObjects.h"
 
-#define FIELD_WIDTH 160		//lauka pa kuru brauc motocikli izmçri
+#define FIELD_WIDTH 160		//lauka pa kuru brauc motocikli izmï¿½ri
 #define FIELD_HEIGHT 90
 #define FRAMES_PER_SECOND 5
 
@@ -34,3 +34,6 @@ void checkFieldCollision (Lightcycle *player);
 void checkTailCollision (Lightcycle *player);
 
 void updateGameFromServer(int testVar);
+
+void receivedGameSettings();
+void receivedUpdate();

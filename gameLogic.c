@@ -4,9 +4,14 @@
 #include <stdlib.h>
 #include <math.h>
 
+#include "serveris/packets.h"
 
+void receivedGameSettings(struct ConnectionResponse *settings) {
 
+}
+void receivedUpdate() {
 
+}
 
 
 void AddNewPlayer(float x, float y, float rotation, Field *field) {

@@ -1,4 +1,4 @@
-LIBS = -lglut -lGL -lm -lGLU
+LIBS = -lglut -lGL -lm -lGLU -lpthread
 
 SRC=$(wildcard *.c)
 

@@ -6,12 +6,17 @@
 
 #include <sys/socket.h>
 #include <netinet/in.h>
+#include <pthread.h>
+
+#define MAXPLAYERS 8
 
 int sock = -1;
+pthread_t tid;
 
-void _joingame();
+void *_joingame(void *arg);
 void _leavegame();
 void _senddata();
+void _receivedata();
 
 int hostGame() {	//bus jaatgriezh 0 ja success. pasha funkcija bus janolasa dati no kaut kada konfig faila.
 	printf("hostGame\n");
@@ -23,7 +28,7 @@ int joinGame() {   //bus jaatgriezh dati, kas dara zinamus speles parametrus (la
 	printf("joinGame\n");
 	fflush(0);
 
-	_joingame();
+	pthread_create(&tid, 0, _joingame, 0);
 
 	return 0;
 }
@@ -54,7 +59,7 @@ int sendData(int testVar) {    //uzliku lai shitas izsaucas katru reizi kad tu p
 /************ JOIN GAME ***************/
 void create_connection(char *address, char *port);
 void send_join();
-void _joingame() {
+void *_joingame(void *arg) {
 
 	char address[15] = {0};
 	char port[4] = {0};
@@ -67,6 +72,7 @@ void _joingame() {
 	printf("port: %s\n", port);
 
 	create_connection(address, port);
+	return 0;
 }
 void create_connection(char *address, char *port) {
 
@@ -84,22 +90,27 @@ void create_connection(char *address, char *port) {
 
 	send_join();
 }
-void send_join() {
+void send_join(void *arg) {
 
 	struct Header h = {PCKT_CONNECTION_REQUEST, 0};
-	int err = send(sock, &h, sizeof(struct Header), 0);
+	int err = write(sock, &h, sizeof(struct Header));
 	printf("sent: %d\n", err);
 
-	char reply[4096] = {0};
+	struct Header hr;
+	struct ConnectionResponse cr;
 
-	err = recv(sock, reply, sizeof(reply), 0);
-	printf("received: %d\n", err);
+	err = read(sock, &hr, sizeof(struct Header));
+		printf("received: %d\n", err);
 
-	struct Header *rh = (struct Header *)&reply[0];
-	struct ConnectionResponse *r = (struct ConnectionResponse *)&reply[sizeof(struct Header)];
-	printf("reply type: %d\n", (int)rh->type);
-	printf("reply length: %d\n", rh->length);
+	err = read(sock, &cr, hr.length);
+		printf("received: %d\n", err);
 
+	printf("reply type: %d\n", (int)hr.type);
+	printf("reply length: %d\n", hr.length);
+
+	receivedGameSettings(&cr);
+
+	_receivedata();
 }
 /**************************************/
 
@@ -125,15 +136,108 @@ void _senddata() {
 	e->shot = 0;
 
 	int err = send(sock, msg, size, 0);
-	printf("event sent: &d\n", err);
+	printf("event sent: %d\n", err);
 
 	free(msg);
 }
 /**************************************/
 
 /*********** RECEIVE DATA *************/
-void _receivedata() {
 
+struct Header h;
+struct UpdatePlayerHeader uph;
+struct UpdatePlayer up;
+struct UpdateBulletHeader ubh;
+struct UpdateBullet ub;
+struct UpdateTotalTailHeader utth;
+struct UpdateTailHeader uth;
+struct UpdateTail ut;
+
+void readpack(void *dst, size_t size) {
+	//int err = recv(sock, dst, size, 0);
+	int err = read(sock, dst, size);
+	if (err < 0)
+		printf("readpack error");
+}
+void read_Header() {
+	readpack(&h, sizeof(struct Header));
+	h.length = ntohl(h.length);
+}
+void read_UpdatePlayerHeader() {
+	readpack(&uph, sizeof(struct UpdatePlayerHeader));
+	uph.playerCount = ntohl(uph.playerCount);
+}
+void read_UpdatePlayer() {
+	readpack(&up, sizeof(struct UpdatePlayer));
+	up.cooldown = ntohl(up.cooldown);
+	up.direction = ntohl(up.direction);
+	up.gameover = ntohl(up.gameover);
+	up.id = ntohl(up.id);
+	up.x = ntohl(up.x);
+	up.y = ntohl(up.y);
+}
+void read_UpdateBulletHeader() {
+	readpack(&ubh, sizeof(struct UpdateBulletHeader));
+	ubh.bulletCount = ntohl(ubh.bulletCount);
+}
+void read_UpdateBullet() {
+	readpack(&ub, sizeof(struct UpdateBullet));
+	ub.direction = ntohl(ub.direction);
+	ub.id = ntohl(ub.id);
+	ub.x = ntohl(ub.x);
+	ub.y = ntohl(ub.y);
+}
+void read_UpdateTotalTailHeader() {
+	readpack(&utth, sizeof(struct UpdateTotalTailHeader));
+	utth.totalTailLength = ntohl(utth.totalTailLength);
+}
+void read_UpdateTailHeader() {
+	readpack(&uth, sizeof(struct UpdateTailHeader));
+	uth.id = ntohl(uth.id);
+	uth.tailCount = ntohl(uth.tailCount);
+}
+void read_UpdateTail() {
+	readpack(&ut, sizeof(struct UpdateTail));
+	ut.x = ntohl(ut.x);
+	ut.y = ntohl(ut.y);
+}
+void read_Update() {
+
+	read_Header();
+	if (h.type != PCKT_UPDATE)
+		printf("wrong package on update");
+
+	int i = 0;
+
+	read_UpdatePlayerHeader();
+	for (i = 0; i < uph.playerCount; i++) {
+		read_UpdatePlayer();
+		//ierakstit datus kkada tabulaa
+
+	}
+
+	read_UpdateTotalTailHeader();
+	for (i = 0; i < utth.totalTailLength; i++) {
+		int j;
+		read_UpdateTailHeader();
+		for (j = 0; j < uth.tailCount; j++) {
+			read_UpdateTail();
+
+		}
+	}
+
+	read_UpdateBulletHeader();
+	for (i = 0; i < ubh.bulletCount; i++) {
+		read_UpdateBullet();
+		//ierakstit datus kkadas tabulaa
+	}
+
+
+}
+void _receivedata() {
+	while (1) {
+		read_Update();
+	}
 }
 /**************************************/
 
