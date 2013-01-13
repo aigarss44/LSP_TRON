@@ -2,13 +2,11 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "serveris/packets.h"
-
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <pthread.h>
 
-#define MAXPLAYERS 8
+#include "serveris/packets.h"
 
 int sock = -1;
 pthread_t tid;
@@ -108,7 +106,7 @@ void send_join(void *arg) {
 	printf("reply type: %d\n", (int)hr.type);
 	printf("reply length: %d\n", hr.length);
 
-	receivedGameSettings(&cr);
+	receivedGameSettings();
 
 	_receivedata();
 }
@@ -232,7 +230,7 @@ void read_Update() {
 		//ierakstit datus kkadas tabulaa
 	}
 
-
+	receivedUpdate();
 }
 void _receivedata() {
 	while (1) {
