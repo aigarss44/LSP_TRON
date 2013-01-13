@@ -1,6 +1,4 @@
-﻿#include "gameLogic.h"
 #include "network.h"
-#include "renderer.h"
 #include "userInput.h"
 
 #include <GL/glut.h>

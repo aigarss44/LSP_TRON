@@ -4,6 +4,7 @@ SRC=$(wildcard *.c)
 
 	
 all: $(SRC)
+	clear
 	gcc $^ $(LIBS) -o prog
 
 

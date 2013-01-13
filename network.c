@@ -6,7 +6,10 @@
 #include <netinet/in.h>
 #include <pthread.h>
 
-#include "serveris/packets.h"
+#include "gameLogic.h"
+
+#include "packets.h"
+
 
 int sock = -1;
 pthread_t tid;
@@ -106,7 +109,7 @@ void send_join(void *arg) {
 	printf("reply type: %d\n", (int)hr.type);
 	printf("reply length: %d\n", hr.length);
 
-	receivedGameSettings();
+	receivedGameSettings(&cr);
 
 	_receivedata();
 }
@@ -201,6 +204,8 @@ void read_UpdateTail() {
 }
 void read_Update() {
 
+	UpdatePackage upack;
+
 	read_Header();
 	if (h.type != PCKT_UPDATE)
 		printf("wrong package on update");
@@ -208,29 +213,36 @@ void read_Update() {
 	int i = 0;
 
 	read_UpdatePlayerHeader();
+	upack.player_count = uph.playerCount;
 	for (i = 0; i < uph.playerCount; i++) {
 		read_UpdatePlayer();
 		//ierakstit datus kkada tabulaa
-
+		upack.players[i] = up;
 	}
 
 	read_UpdateTotalTailHeader();
+	upack.total_tail_length = utth.totalTailLength;
 	for (i = 0; i < utth.totalTailLength; i++) {
 		int j;
 		read_UpdateTailHeader();
+		upack.tails[i].uth = uth;
 		for (j = 0; j < uth.tailCount; j++) {
 			read_UpdateTail();
-
+			upack.tails[i].ut[j] = ut;
 		}
 	}
 
 	read_UpdateBulletHeader();
+	upack.bullet_count = ubh.bulletCount;
+	upack.ub = (struct UpdateBullet *)malloc(sizeof(struct UpdateBullet) * ubh.bulletCount);
 	for (i = 0; i < ubh.bulletCount; i++) {
 		read_UpdateBullet();
 		//ierakstit datus kkadas tabulaa
+		upack.ub[i] = ub;
 	}
 
-	receivedUpdate();
+	receivedUpdate(&upack);
+	free(upack.ub);
 }
 void _receivedata() {
 	while (1) {

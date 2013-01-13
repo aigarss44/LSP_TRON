@@ -4,11 +4,13 @@
 #include <stdlib.h>
 #include <math.h>
 
+#include "gameObjects.h"
+
 /*** Otto ***/
-void receivedGameSettings() {
+void receivedGameSettings(struct ConnectionResponse *cr) {
 
 }
-void receivedUpdate() {
+void receivedUpdate(UpdatePackage *up) {
 
 }
 /************/

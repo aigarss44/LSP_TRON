@@ -1,5 +1,6 @@
 #pragma once
 
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "renderer.h"
@@ -33,8 +34,28 @@ void checkTailCollision (Lightcycle *player);
 void updateGameFromServer(int testVar);
 
 /* Otto */
-void receivedGameSettings();
-void receivedUpdate();
+#define MAX_PLAYERS 8
+#define MAX_TAIL_SEGS 10
+
+#include "packets.h"
+typedef struct _Tail {
+	struct UpdateTailHeader uth;
+	struct UpdateTail ut[MAX_TAIL_SEGS];
+} TailList;
+typedef struct _UpdatePackage {
+
+	int player_count;
+	struct UpdatePlayer players[MAX_PLAYERS];
+
+	int total_tail_length;
+	TailList tails[MAX_PLAYERS];
+
+	int bullet_count;
+	struct UpdateBullet *ub;
+
+} UpdatePackage;
+void receivedGameSettings(struct ConnectionResponse *cr);
+void receivedUpdate(UpdatePackage *up);
 
 
 
